@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Demo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+<body>
+	
+	<script type="text/javascript" src="js/lib/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/common/AppCommon.js"></script>
+	<script type="text/javascript" src="js/common/AppProgram.js"></script>
+	<script type="text/javascript">
+		var AP = new AppProgram();
+		(function ($) {$(function () {
+			AP.init();
+			$(document).on('change', 'input,select,textarea', function () {
+				console.log(AP.user.name);
+				console.log(AP.user.age);
+				console.log(AP.user.gender);
+				console.log(AP.user.desc);
+			});
+
+			var elem = $('<div>'
+					+ '<input t-binding-data="AP.user.name" />'
+				+ '</div>'
+				+ '<div>'
+					+ '<input type="number" t-binding-data="AP.user.age" />'
+				+ '</div>'
+				+ '<div>'
+					+ '<select t-binding-data="AP.user.gender">'
+						+ '<option value="0">Please Select...</option>'
+						+ '<option value="1">M</option>'
+						+ '<option value="2">F</option>'
+					+ '</select>'
+				+ '</div>'
+				+ '<div>'
+					+ '<textarea t-binding-data="AP.user.desc"></textarea>'
+				+ '</div>');
+
+			setTimeout(function () {
+				$('body').append(elem);
+			}, 2000);
+
+		});})(jQuery);
+		var hash = window.location.hash.substring(1);
+	</script>
+</body>
+</html>
